@@ -1,3 +1,10 @@
+header {
+    background-image: linear-gradient(to right, blue , darkblue);
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
 #curWeather {
     border: 4px double black;
     width: 600px;
