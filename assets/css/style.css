@@ -3,12 +3,27 @@ header {
     text-align: center;
     padding-top: 25px;
     padding-bottom: 25px;
+    color: white;
+    margin: 15px;
+}
+
+aside {
+    width: 20%;
+    float: left;
+    margin-left: 15px;
+}
+
+#weatherSect {
+    display: none;
+    float: right;
+    width: 75%;
+    margin-right: 15px;
 }
 
 #curWeather {
     border: 4px double black;
     width: 600px;
-    height: 400px;
+    height: 200px;
 }
 
 #curWeather h2 {

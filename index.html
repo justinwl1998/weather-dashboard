@@ -9,70 +9,75 @@
         <header>
             <h1>Weather Dashboard</h1>
         </header>
-        <h1>Search for a city:</h1>
-        <form id="user-form">
-            <input id="cityInput" type="text">
 
-            <button id="submitButton" type="submit">Search</button>
-        </form>
+        <aside>
+            <h4>Search for a city:</h4>
+            <form id="user-form">
+                <input id="cityInput" type="text">
 
-        <div id="curWeather">
-            <h2 id="cityToday"></h2> <img>
-            <p class="temp"></p>
-            <p class="wind"></p>
-            <p class="humidity"></p>
-            <p class="uvIndex"></p>
-        </div>
+                <button id="submitButton" type="submit">Search</button>
+            </form>
+        </aside>
 
-        <h1>5-Day Forecast:</h1>
+        <section id = weatherSect>
+            <div id="curWeather">
+                <h2 id="cityToday"></h2> <img>
+                <p class="temp">Temp: <span></span></p>
+                <p class="wind">Wind: <span></span></p>
+                <p class="humidity">Humidity: <span></span></p>
+                <p class="uvIndex"></p>
+            </div>
 
-        <div class="row">
-            <div class="col card">
-                <div class="card-body">
-                    <h3 class="forecastDate"></h3>
-                    <img>
-                    <p class = "forecastTemp">Temp: <span></span></p>
-                    <p class = "forecastWind">Wind: <span></span></p>
-                    <p class = "forecastHumid">Humidity: <span></span></p>
+            <h4>5-Day Forecast:</h4>
+
+            <div class="row">
+                <div class="col card">
+                    <div class="card-body">
+                        <h3 class="forecastDate"></h3>
+                        <img>
+                        <p class = "forecastTemp">Temp: <span></span></p>
+                        <p class = "forecastWind">Wind: <span></span></p>
+                        <p class = "forecastHumid">Humidity: <span></span></p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h3 class="forecastDate"></h3>
+                        <img>
+                        <p class = "forecastTemp">Temp: <span></span></p>
+                        <p class = "forecastWind">Wind: <span></span></p>
+                        <p class = "forecastHumid">Humidity: <span></span></p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h3 class="forecastDate"></h3>
+                        <img>
+                        <p class = "forecastTemp">Temp: <span></span></p>
+                        <p class = "forecastWind">Wind: <span></span></p>
+                        <p class = "forecastHumid">Humidity: <span></span></p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h3 class="forecastDate"></h3>
+                        <img>
+                        <p class = "forecastTemp">Temp: <span></span></p>
+                        <p class = "forecastWind">Wind: <span></span></p>
+                        <p class = "forecastHumid">Humidity: <span></span></p>
+                    </div>
+                </div>
+                <div class="col card">
+                    <div class="card-body">
+                        <h3 class="forecastDate"></h3>
+                        <img>
+                        <p class = "forecastTemp">Temp: <span></span></p>
+                        <p class = "forecastWind">Wind: <span></span></p>
+                        <p class = "forecastHumid">Humidity: <span></span></p>
+                    </div>
                 </div>
             </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h3 class="forecastDate"></h3>
-                    <img>
-                    <p class = "forecastTemp">Temp: <span></span></p>
-                    <p class = "forecastWind">Wind: <span></span></p>
-                    <p class = "forecastHumid">Humidity: <span></span></p>
-                </div>
-            </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h3 class="forecastDate"></h3>
-                    <img>
-                    <p class = "forecastTemp">Temp: <span></span></p>
-                    <p class = "forecastWind">Wind: <span></span></p>
-                    <p class = "forecastHumid">Humidity: <span></span></p>
-                </div>
-            </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h3 class="forecastDate"></h3>
-                    <img>
-                    <p class = "forecastTemp">Temp: <span></span></p>
-                    <p class = "forecastWind">Wind: <span></span></p>
-                    <p class = "forecastHumid">Humidity: <span></span></p>
-                </div>
-            </div>
-            <div class="col card">
-                <div class="card-body">
-                    <h3 class="forecastDate"></h3>
-                    <img>
-                    <p class = "forecastTemp">Temp: <span></span></p>
-                    <p class = "forecastWind">Wind: <span></span></p>
-                    <p class = "forecastHumid">Humidity: <span></span></p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
