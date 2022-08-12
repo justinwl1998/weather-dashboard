@@ -11,6 +11,7 @@ var historyArr = [];
 var buttonClickHandler = function (event) {
     event.preventDefault();
 
+    // this if statement is here specifically if you search for a city from history
     if (event.target.classList[0] === "history") {
         getCurrentWeather(event.target.textContent)
         return;
@@ -100,7 +101,7 @@ var getForecast = function(cityName) {
 }
 
 var displayCurrentWeather = function (weatherData) {
-    
+    //it's incredibly lazy, but reveal the weather element
     if (weatherEl.css('display') === 'none') {
         weatherEl.css('display', 'block');
     }
@@ -118,6 +119,7 @@ var displayCurrentWeather = function (weatherData) {
 
 var displayForecast = function(weatherData) {
     for (var i = 0; i < forecastEl.length; i++) {
+        // Get the forecast by indexing it like this
         var curWeatherIndex = weatherData.list[0+8*i];
 
         forecastEl[i].children[0].textContent = moment(curWeatherIndex.dt_txt.split(" ")[0]).format("M/DD/YYYY");
