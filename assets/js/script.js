@@ -6,9 +6,17 @@ var searchCityEl = document.querySelector("#cityInput");
 var curWeatherEl = document.querySelector("#curWeather");
 var forecastEl = document.querySelectorAll(".card-body");
 var weatherEl = $("#weatherSect");
+var searchHistoryEl = document.querySelector("#searchHistory")
+var historyButtonsEl = $('.history')
+var historyArr = [];
 
 var buttonClickHandler = function (event) {
     event.preventDefault();
+
+    if (event.target.classList[0] === "history") {
+        getCurrentWeather(event.target.textContent)
+        return;
+    }
 
     var city = searchCityEl.value.trim();
 
@@ -22,6 +30,12 @@ var buttonClickHandler = function (event) {
     }
 }
 
+var historyButtonHandler = function (event) {
+    event.preventDefault();
+
+    console.log("Clicked " + event.target);
+}
+
 var getCurrentWeather = function(cityName) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=89a4f3c910149accc122e8310674f685"
 
@@ -29,13 +43,30 @@ var getCurrentWeather = function(cityName) {
         .then(function(res) {
             if (res.ok) {
                 res.json().then(function(data) {
-                    console.log("Today's weather:");
-                    console.log(data)
-                    console.log("End of getCurrentWeather")
+                    //add History Button
+                    if (!historyArr.includes(data.name)) {
+                        addHistory(data.name)
+                        historyArr.unshift(data.name);
+                    }
+                    else {
+                        // rearrange order of buttons
+                        for (var i = 0; i < historyButtonsEl.length; i++) {
+                            if (historyButtonsEl.eq(i)[0].innerHTML === data.name) {
+                                historyButtonsEl.eq(i).remove();
+                                historyArr.splice(i, 1);
+
+                                addHistory(data.name);
+                                historyArr.unshift(data.name);
+                            }
+                        }
+                    }
+
+                    //update localStorage
+                    localStorage.setItem("weatherHistory", JSON.stringify(historyArr));
 
                     // function to modify the current weather section
                     displayCurrentWeather(data);
-                    getForecast(cityName)
+                    getForecast(data.name)
                 })
             }
             else {
@@ -49,18 +80,21 @@ var getCurrentWeather = function(cityName) {
         })
 }
 
-var getForecast = function(cityName) {
-    console.log("TODOLED");
+var addHistory = function(cityName) {
+    var newButton = document.createElement("button");
+    newButton.setAttribute("class", "history btn btn-primary")
+    newButton.textContent = cityName;
+    searchHistoryEl.prepend(newButton)
+    historyButtonsEl = $('.history')
+}
 
+var getForecast = function(cityName) {
     var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=89a4f3c910149accc122e8310674f685"
 
     fetch(apiUrl)
         .then(function (res) {
             if (res.ok) {
                 res.json().then(function (data) {
-                    //console.log("This should execute and finish last.")
-                    console.log(data);
-
                     displayForecast(data);
                 })
             }
@@ -91,14 +125,9 @@ var displayCurrentWeather = function (weatherData) {
 }
 
 var displayForecast = function(weatherData) {
-    console.log("displayForecast is still being worked on.")
-
-    console.log(forecastEl)
-    //console.log(forecastEl.children[0].children)
-
     for (var i = 0; i < forecastEl.length; i++) {
         var curWeatherIndex = weatherData.list[0+8*i];
-        //forecastEl.children[i].textContent = "Baba booey."
+
         forecastEl[i].children[0].textContent = moment(curWeatherIndex.dt_txt.split(" ")[0]).format("M/DD/YYYY");
 
         forecastEl[i].children[1].src = "http://openweathermap.org/img/wn/" + weatherData.list[0+8*i].weather[0].icon  + ".png"
@@ -109,4 +138,20 @@ var displayForecast = function(weatherData) {
     }
 }
 
+var init = function() {
+    if (localStorage.getItem("weatherHistory") === null) {
+        localStorage.setItem("weatherHistory", JSON.stringify([]));
+    }
+    else {
+        historyArr = JSON.parse(localStorage.getItem("weatherHistory"));
+
+        for (var i = 0; i < historyArr.length; i++) {
+            addHistory(historyArr[i]);
+        }
+    }
+}
+
 userFormEl.addEventListener("submit", buttonClickHandler);
+searchHistoryEl.addEventListener("click", buttonClickHandler)
+
+init();
