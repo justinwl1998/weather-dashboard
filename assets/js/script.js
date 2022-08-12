@@ -1,5 +1,3 @@
-console.log("Hello mo, goodbye mo.")
-
 var userFormEl = document.querySelector("#user-form");
 var searchButtonEl = document.querySelector("#submitButton");
 var searchCityEl = document.querySelector("#cityInput");
@@ -28,12 +26,6 @@ var buttonClickHandler = function (event) {
     else {
         console.log("Input shouldn't be blank.");
     }
-}
-
-var historyButtonHandler = function (event) {
-    event.preventDefault();
-
-    console.log("Clicked " + event.target);
 }
 
 var getCurrentWeather = function(cityName) {
