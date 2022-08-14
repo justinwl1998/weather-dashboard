@@ -139,7 +139,7 @@ var init = function() {
     else {
         historyArr = JSON.parse(localStorage.getItem("weatherHistory"));
 
-        for (var i = 0; i < historyArr.length; i++) {
+        for (var i = historyArr.length-1; i >= 0; i--) {
             addHistory(historyArr[i]);
         }
     }
