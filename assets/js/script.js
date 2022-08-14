@@ -122,6 +122,7 @@ var displayForecast = function(weatherData) {
         // Get the forecast by indexing it like this
         var curWeatherIndex = weatherData.list[0+8*i];
 
+        //I had no need to do that when there was a perfectly fine date text to go off of, but oh well
         forecastEl[i].children[0].textContent = moment(curWeatherIndex.dt_txt.split(" ")[0]).format("M/DD/YYYY");
 
         forecastEl[i].children[1].src = "http://openweathermap.org/img/wn/" + weatherData.list[0+8*i].weather[0].icon  + ".png"
@@ -139,6 +140,7 @@ var init = function() {
     else {
         historyArr = JSON.parse(localStorage.getItem("weatherHistory"));
 
+        // go through the array in reverse order, since the most recent search is at the last index
         for (var i = historyArr.length-1; i >= 0; i--) {
             addHistory(historyArr[i]);
         }
