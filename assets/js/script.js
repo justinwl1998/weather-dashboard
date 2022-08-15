@@ -82,7 +82,7 @@ var addHistory = function(cityName) {
 }
 
 var getForecast = function(cityName) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=89a4f3c910149accc122e8310674f685"
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=89a4f3c910149accc122e8310674f685"
 
     fetch(apiUrl)
         .then(function (res) {
@@ -108,7 +108,7 @@ var displayCurrentWeather = function (weatherData) {
 
     curWeatherEl.children[0].textContent = weatherData.name + " " + moment().format("M/DD/YYYY");
     
-    curWeatherEl.children[1].src = "http://openweathermap.org/img/wn/" + weatherData.weather[0].icon  + ".png"
+    curWeatherEl.children[1].src = "https://openweathermap.org/img/wn/" + weatherData.weather[0].icon  + ".png"
 
     curWeatherEl.children[2].children[0].textContent = weatherData.main.temp + "\xB0F";
     curWeatherEl.children[3].children[0].textContent = weatherData.wind.speed + " MPH";
@@ -125,7 +125,7 @@ var displayForecast = function(weatherData) {
         //I had no need to do that when there was a perfectly fine date text to go off of, but oh well
         forecastEl[i].children[0].textContent = moment(curWeatherIndex.dt_txt.split(" ")[0]).format("M/DD/YYYY");
 
-        forecastEl[i].children[1].src = "http://openweathermap.org/img/wn/" + weatherData.list[0+8*i].weather[0].icon  + ".png"
+        forecastEl[i].children[1].src = "https://openweathermap.org/img/wn/" + weatherData.list[0+8*i].weather[0].icon  + ".png"
 
         forecastEl[i].children[2].children[0].textContent = curWeatherIndex.main.temp + "\xB0F";
         forecastEl[i].children[3].children[0].textContent = curWeatherIndex.wind.speed + " MPH";
