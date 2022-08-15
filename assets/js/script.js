@@ -96,7 +96,7 @@ var getForecast = function(cityName) {
             }
         })
         .catch(function (error) {
-            console.log("Cannot connect to weather API")
+            console.log("Cannot connect to forecast API")
         })
 }
 
